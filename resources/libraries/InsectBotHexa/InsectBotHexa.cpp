@@ -24,9 +24,6 @@ InsectBotHexa::InsectBotHexa(void)
 
     brightnessThreshold = 50;
 
-    distanceIsValid = false;
-    brightnessIsValid = false;
-
     isSetup = false;
 }
 
@@ -57,6 +54,9 @@ void InsectBotHexa::setup(void)
     lightSensorLeft = A2;
     lightSensorRight = A0;
 
+    computeBrightness(COMPUTEBRIGHTNESS_LEFT || COMPUTEBRIGHTNESS_RIGHT);
+    computeDistanceFromObstacle();
+
     delay(2000);
 }
 
@@ -76,8 +76,6 @@ void InsectBotHexa::servo_move(Servo &s, int &current_angle, int target_angle)
         s.write(current_angle);
         delay(s_delay);
     } while (abs(current_angle - target_angle) > s_step);
-
-    distanceIsValid = brightnessIsValid = false;
 }
 
 /*
@@ -138,8 +136,6 @@ void InsectBotHexa::computeDistanceFromObstacle(void)
 
     DEBUG_PRINT("computeDistanceFromObstacle: ");
 
-    distanceIsValid = true;
-
     for (i = 0; i < count; i++) {
         value += analogRead(distanceSensor);
     }
@@ -166,9 +162,7 @@ int InsectBotHexa::getDistanceFromObstacle(void)
 
     DEBUG_PRINT("getDistanceFromObstacle: ");
 
-    if (!distanceIsValid) {
-        computeDistanceFromObstacle();
-    }
+    computeDistanceFromObstacle();
 
     DEBUG_PRINT(lastDistanceFromObstacle);
     DEBUG_PRINTLN(" cm");
@@ -179,7 +173,6 @@ bool InsectBotHexa::isInDanger(void)
 {
     lazySetup();
 
-    distanceIsValid = false;
     if (getDistanceFromObstacle() < 30) {   // centimeters
         DEBUG_PRINTLN("isInDanger: DANGER");
         return true;
@@ -189,7 +182,7 @@ bool InsectBotHexa::isInDanger(void)
     }
 }
 
-void InsectBotHexa::computeBrightness(void)
+void InsectBotHexa::computeBrightness(int side)
 {
     int i, count = 10, valueL = 0, valueR = 0;
 
@@ -197,28 +190,25 @@ void InsectBotHexa::computeBrightness(void)
 
     DEBUG_PRINT("computeBrightness: ");
 
-    brightnessIsValid = true;
-
     for (i = 0; i < count; i++) {
-        valueL += analogRead(lightSensorLeft);
-        valueR += analogRead(lightSensorRight);
+        if (side & COMPUTEBRIGHTNESS_LEFT) valueL += analogRead(lightSensorLeft);
+        if (side & COMPUTEBRIGHTNESS_RIGHT) valueR += analogRead(lightSensorRight);
     }
-    valueL /= count;
-    valueR /= count;
-    DEBUG_PRINT("left: "); DEBUG_PRINT(valueL);
-    DEBUG_PRINT("right: "); DEBUG_PRINTLN(valueR);
-
-    lastBrightnessOnLeft = valueL;
-    lastBrightnessOnRight = valueR;
+    if (side & COMPUTEBRIGHTNESS_LEFT) {
+        valueL /= count;
+        DEBUG_PRINT("left: "); DEBUG_PRINT(valueL);
+        lastBrightnessOnLeft = valueL;
+    }
+    if (side & COMPUTEBRIGHTNESS_RIGHT) {
+        valueR /= count;
+        DEBUG_PRINT("right: "); DEBUG_PRINTLN(valueR);
+        lastBrightnessOnRight = valueR;
+    }
 }
 
 bool InsectBotHexa::isBrighterOnLeft(void)
 {
     lazySetup();
-
-    if (!brightnessIsValid) {
-        computeBrightness();
-    }
 
     if (abs(lastBrightnessOnRight - lastBrightnessOnLeft) < brightnessThreshold) {
         return false;
@@ -233,10 +223,6 @@ bool InsectBotHexa::isBrighterOnRight(void)
 {
     lazySetup();
 
-    if (!brightnessIsValid) {
-        computeBrightness();
-    }
-
     if (abs(lastBrightnessOnRight - lastBrightnessOnLeft) < brightnessThreshold) {
         return false;
     } else if (lastBrightnessOnRight > lastBrightnessOnLeft) {
@@ -250,10 +236,6 @@ bool InsectBotHexa::isBrightnessEqual(void)
 {
     lazySetup();
 
-    if (!brightnessIsValid) {
-        computeBrightness();
-    }
-
     if (abs(lastBrightnessOnRight - lastBrightnessOnLeft) < brightnessThreshold) {
         return true;
     } else {
@@ -265,9 +247,7 @@ int InsectBotHexa::getBrightnessOnLeft(void)
 {
     lazySetup();
 
-    if (!brightnessIsValid) {
-        computeBrightness();
-    }
+    computeBrightness(COMPUTEBRIGHTNESS_LEFT);
 
     return lastBrightnessOnLeft;
 }
@@ -276,9 +256,7 @@ int InsectBotHexa::getBrightnessOnRight(void)
 {
     lazySetup();
 
-    if (!brightnessIsValid) {
-        computeBrightness();
-    }
+    computeBrightness(COMPUTEBRIGHTNESS_RIGHT);
 
     return lastBrightnessOnRight;
 }

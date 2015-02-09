@@ -27,13 +27,11 @@ private:
     int bending_legs_min;                   // Middle servo minimum angle: bend right
     int bending_legs_max;                   // Middle servo maximum angle: bend left
 
-    int distanceIsValid;                    // True if no movement has been made
     int lastDistanceFromObstacle;           // Distance in centimeters
 
-    int brightnessIsValid;                  // True if no movement has been made
     int brightnessThreshold;
-    int lastBrightnessOnLeft;               // Raw value for left light sensor
-    int lastBrightnessOnRight;              // Raw value for right light sensor
+    int lastBrightnessOnLeft;               // Raw value for left light sensor (0 - 1023)
+    int lastBrightnessOnRight;              // Raw value for right light sensor (0 - 1023)
 
     // Analog sensors
     int distanceSensor;
@@ -46,7 +44,9 @@ private:
     void servo_move(Servo &s, int &current_angle, int target_angle);
     int cost_to_planned_position(int expected_fa, int expected_ma, int expected_ra);
     void computeDistanceFromObstacle(void);
-    void computeBrightness(void);
+#define COMPUTEBRIGHTNESS_LEFT 0x1
+#define COMPUTEBRIGHTNESS_RIGHT 0x2
+    void computeBrightness(int side);
   
 public:
     InsectBotHexa(void);
