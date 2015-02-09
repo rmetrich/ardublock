@@ -6988,7 +6988,7 @@
 
 		<!-- InsectBotHexa blocks -->
 
-		<BlockGenus name="insectbot_hexa_is_indanger" kind="data" color="64 109 0" initlabel="bg.insectbot_hexa_is_indanger">
+		<BlockGenus name="insectbot_hexa_is_indanger" kind="data" color="255 128 0" initlabel="bg.insectbot_hexa_is_indanger">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -7002,7 +7002,7 @@
 			</Images>
 		</BlockGenus>
 
-		<BlockGenus name="insectbot_hexa_go_forward" kind="command" color="64 109 0" initlabel="bg.insectbot_hexa_go_forward">
+		<BlockGenus name="insectbot_hexa_go_forward" kind="command" color="255 128 0" initlabel="bg.insectbot_hexa_go_forward">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -7013,7 +7013,7 @@
 			</Images>
 		</BlockGenus>
 
-		<BlockGenus name="insectbot_hexa_go_backward" kind="command" color="64 109 0" initlabel="bg.insectbot_hexa_go_backward">
+		<BlockGenus name="insectbot_hexa_go_backward" kind="command" color="255 128 0" initlabel="bg.insectbot_hexa_go_backward">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -7024,7 +7024,7 @@
 			</Images>
 		</BlockGenus>
 
-		<BlockGenus name="insectbot_hexa_turn_left" kind="command" color="64 109 0" initlabel="bg.insectbot_hexa_turn_left">
+		<BlockGenus name="insectbot_hexa_turn_left" kind="command" color="255 128 0" initlabel="bg.insectbot_hexa_turn_left">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -7035,7 +7035,7 @@
 			</Images>
 		</BlockGenus>
 
-		<BlockGenus name="insectbot_hexa_turn_right" kind="command" color="64 109 0" initlabel="bg.insectbot_hexa_turn_right">
+		<BlockGenus name="insectbot_hexa_turn_right" kind="command" color="255 128 0" initlabel="bg.insectbot_hexa_turn_right">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -7046,7 +7046,7 @@
 			</Images>
 		</BlockGenus>
 
-		<BlockGenus name="insectbot_hexa_walk_mode" kind="command" color="64 109 0" initlabel="bg.insectbot_hexa_walk_mode">
+		<BlockGenus name="insectbot_hexa_walk_mode" kind="command" color="255 128 0" initlabel="bg.insectbot_hexa_walk_mode">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -7057,7 +7057,7 @@
 			</Images>
 		</BlockGenus>
 
-		<BlockGenus name="insectbot_hexa_run_mode" kind="command" color="64 109 0" initlabel="bg.insectbot_hexa_run_mode">
+		<BlockGenus name="insectbot_hexa_run_mode" kind="command" color="255 128 0" initlabel="bg.insectbot_hexa_run_mode">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -7068,7 +7068,7 @@
 			</Images>
 		</BlockGenus>
 
-		<BlockGenus name="insectbot_hexa_get_distance" kind="data" color="64 109 0" initlabel="bg.insectbot_hexa_get_distance">
+		<BlockGenus name="insectbot_hexa_get_distance" kind="data" color="255 128 0" initlabel="bg.insectbot_hexa_get_distance">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -7082,7 +7082,7 @@
 			</Images>
 		</BlockGenus>
 
-		<BlockGenus name="insectbot_hexa_get_brightness_on_left" kind="data" color="64 109 0" initlabel="bg.insectbot_hexa_get_brightness_on_left">
+		<BlockGenus name="insectbot_hexa_get_brightness_on_left" kind="data" color="255 128 0" initlabel="bg.insectbot_hexa_get_brightness_on_left">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -7096,7 +7096,7 @@
 			</Images>
 		</BlockGenus>
 
-		<BlockGenus name="insectbot_hexa_get_brightness_on_right" kind="data" color="64 109 0" initlabel="bg.insectbot_hexa_get_brightness_on_right">
+		<BlockGenus name="insectbot_hexa_get_brightness_on_right" kind="data" color="255 128 0" initlabel="bg.insectbot_hexa_get_brightness_on_right">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -7110,7 +7110,7 @@
 			</Images>
 		</BlockGenus>
 
-		<BlockGenus name="insectbot_hexa_is_brighter_on_left" kind="data" color="64 109 0" initlabel="bg.insectbot_hexa_is_brighter_on_left">
+		<BlockGenus name="insectbot_hexa_is_brighter_on_left" kind="data" color="255 128 0" initlabel="bg.insectbot_hexa_is_brighter_on_left">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -7124,7 +7124,7 @@
 			</Images>
 		</BlockGenus>
 
-		<BlockGenus name="insectbot_hexa_is_brighter_on_right" kind="data" color="64 109 0" initlabel="bg.insectbot_hexa_is_brighter_on_right">
+		<BlockGenus name="insectbot_hexa_is_brighter_on_right" kind="data" color="255 128 0" initlabel="bg.insectbot_hexa_is_brighter_on_right">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -7138,7 +7138,7 @@
 			</Images>
 		</BlockGenus>
 
-		<BlockGenus name="insectbot_hexa_is_brightness_equal" kind="data" color="64 109 0" initlabel="bg.insectbot_hexa_is_brightness_equal">
+		<BlockGenus name="insectbot_hexa_is_brightness_equal" kind="data" color="255 128 0" initlabel="bg.insectbot_hexa_is_brightness_equal">
 			<description>
 				<text>workshop template</text>
 			</description>
@@ -9376,7 +9376,7 @@
 			    <BlockGenusMember>insectbot_turn_left</BlockGenusMember>
 			    <BlockGenusMember>insectbot_blink_led</BlockGenusMember>
 			</BlockDrawer>
-			<BlockDrawer button-color="64 109 0" name="bd.insectbot_hexa">
+			<BlockDrawer button-color="255 128 0" name="bd.insectbot_hexa">
 			    <BlockGenusMember>insectbot_hexa_is_indanger</BlockGenusMember>
 			    <BlockGenusMember>insectbot_hexa_go_forward</BlockGenusMember>
 			    <BlockGenusMember>insectbot_hexa_go_backward</BlockGenusMember>

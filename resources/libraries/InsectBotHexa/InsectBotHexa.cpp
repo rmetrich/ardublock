@@ -179,6 +179,7 @@ bool InsectBotHexa::isInDanger(void)
 {
     lazySetup();
 
+    distanceIsValid = false;
     if (getDistanceFromObstacle() < 30) {   // centimeters
         DEBUG_PRINTLN("isInDanger: DANGER");
         return true;
