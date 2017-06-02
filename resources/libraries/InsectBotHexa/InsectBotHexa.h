@@ -33,6 +33,8 @@ private:
     int lastBrightnessOnLeft;               // Raw value for left light sensor (0 - 1023)
     int lastBrightnessOnRight;              // Raw value for right light sensor (0 - 1023)
 
+    bool running;                           // Is the robot running?
+
     // Analog sensors
     int distanceSensor;
     int lightSensorLeft;
@@ -47,7 +49,7 @@ private:
 #define COMPUTEBRIGHTNESS_LEFT 0x1
 #define COMPUTEBRIGHTNESS_RIGHT 0x2
     void computeBrightness(int side);
-  
+
 public:
     InsectBotHexa(void);
 

@@ -1,6 +1,8 @@
 #include "InsectBotHexa.h"
 #include <Servo.h>
 
+// #define DEBUG 1
+
 #ifdef  DEBUG
 #define DEBUG_PRINT(str)      Serial.print(str)
 #define DEBUG_PRINTLN(str)    Serial.println(str)
@@ -24,21 +26,27 @@ InsectBotHexa::InsectBotHexa(void)
 
     brightnessThreshold = 50;
 
+    distanceSensor = A1;
+    lightSensorLeft = A2;
+    lightSensorRight = A0;
+
+    running = false;
+
     isSetup = false;
 }
 
 void InsectBotHexa::lazySetup()
 {
     if (!isSetup) {
-        setup();
         isSetup = true;
+        setup();
     }
 }
 
 void InsectBotHexa::setup(void)
 {
 #ifdef  DEBUG
-    Serial.begin(9600);
+    Serial.begin(115200);
 #endif
     DEBUG_PRINTLN("setup");
 
@@ -49,10 +57,6 @@ void InsectBotHexa::setup(void)
     m.write(ma);
     r.attach(rpin);
     r.write(ra);
-
-    distanceSensor = A1;
-    lightSensorLeft = A2;
-    lightSensorRight = A0;
 
     computeBrightness(COMPUTEBRIGHTNESS_LEFT || COMPUTEBRIGHTNESS_RIGHT);
     computeDistanceFromObstacle();
@@ -69,7 +73,7 @@ void InsectBotHexa::servo_move(Servo &s, int &current_angle, int target_angle)
 {
     int step;
     if (current_angle == target_angle) return;
-        step = current_angle > target_angle ? -s_step : s_step;
+    step = current_angle > target_angle ? -s_step : s_step;
 
     do {
         current_angle += step;
@@ -140,13 +144,13 @@ void InsectBotHexa::computeDistanceFromObstacle(void)
         value += analogRead(distanceSensor);
     }
     value /= count;
-    DEBUG_PRINT(value); 
+    DEBUG_PRINT(value);
     DEBUG_PRINT(" ~> ");
 
     lastDistanceFromObstacle = 80;
 
-    for (i = 0; i < sizeof (vals) / sizeof (int); i++) {
-        if (value > vals[i]) {
+    for (i = 0; i < sizeof (vals) / sizeof (*vals); i++) {
+        if (value >= vals[i]) {
             lastDistanceFromObstacle = cms[i];
             break;
         }
@@ -263,12 +267,16 @@ int InsectBotHexa::getBrightnessOnRight(void)
 
 void InsectBotHexa::walkMode(void)
 {
+    if (!running) return;
+    running = false;
     s_delay = 5;
     s_step = 1;
 }
 
 void InsectBotHexa::runMode(void)
 {
+    if (running) return;
+    running = true;
     s_delay = 2;
     s_step = 1;
 }
